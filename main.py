@@ -24,6 +24,11 @@ class TaskCreate(BaseModel):
 
 tasks: list[Task] = []
 
+class BookCreate(BaseModel):
+    book: str
+book: str = ""
+
+
 @app.get("/tasks", response_model=list[Task])
 def read_tasks() -> list[Task]:
     return tasks
@@ -37,4 +42,16 @@ def create_task(payload:TaskCreate) -> Task:
     )
     tasks.append(task)
     return task
+
+@app.get("/book",)
+def get_book() -> str:
+    if not book:
+        return "А нет любимой книги!"
+    return f"Любимая книга: {book}"
+
+@app.post("/book", status_code=status.HTTP_201_CREATED)
+def create_book(payload: BookCreate):
+    global book
+    book = payload.book
+    return book
 
