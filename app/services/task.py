@@ -3,8 +3,10 @@
 from app.repositories.task import TaskRepository
 from app.schemas.task import TaskCreate, TaskRead, TaskUpdate
 
+
 class TaskNotFoundError(Exception):
     pass
+
 
 class TaskService:
     """Ключевые операции с задачми, включая бизнес-лоигку, валидацию и прочее"""
@@ -24,6 +26,8 @@ class TaskService:
 
     def update_task(self, task_id: str, payload: TaskUpdate) -> TaskRead:
         task = self.repository.get_by_id(task_id)
+        if task is None:
+            raise TaskNotFoundError()
 
         if payload.title is not None:
             task.title = payload.title
@@ -35,7 +39,7 @@ class TaskService:
 
     def delete_task(self, task_id: str) -> None:
         task = self.repository.get_by_id(task_id)
-
+        if task is None:
+            raise TaskNotFoundError()
         self.repository.delete(task)
         self.db.commit()
-
