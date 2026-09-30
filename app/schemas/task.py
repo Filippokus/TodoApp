@@ -8,8 +8,10 @@ class TaskRead(BaseModel):
     title: str
     completed: bool = False
 
+
 class TaskCreate(BaseModel):
     title: str
+
 
 class TaskUpdate(BaseModel):
     title: str | None = None
