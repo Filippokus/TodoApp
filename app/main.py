@@ -9,17 +9,19 @@ from app.models.base import Base
 from app.db.session import engine
 
 
-@asynccontextmanager
-async def lifespan(_: FastAPI):
-    # Все нужные модели должны быть импортированы перед запуском
-    from app.models.task import TaskORM
-    from app.models.category import  CategoryORM
-    Base.metadata.create_all(bind=engine)
-    yield
+# @asynccontextmanager
+# async def lifespan(_: FastAPI):
+#     # Все нужные модели должны быть импортированы перед запуском
+#     from app.models.task import TaskORM
+#     from app.models.category import  CategoryORM
+#     Base.metadata.create_all(bind=engine)
+#     yield
 
 
 settings = get_settings()
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    # lifespan=lifespan
+)
 
 app.add_middleware(
     CORSMiddleware,
