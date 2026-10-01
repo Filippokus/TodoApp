@@ -9,7 +9,6 @@ settings = get_settings()
 engine = create_engine(settings.database_url)
 SessionLocal = sessionmaker(bind=engine)
 
-
 def get_db() -> Generator[Session, None, None]:
     db = SessionLocal()
     try:
