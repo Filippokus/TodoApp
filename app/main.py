@@ -1,6 +1,7 @@
 ﻿import logging
-from multiprocessing.process import name
 from time import perf_counter
+from typing import Callable
+
 
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,6 +24,9 @@ settings = get_settings()
 app = FastAPI(
     # lifespan=lifespan
 )
+
+app.state.request_count = 0
+
 logger = logging.getLogger('app.middleware')
 
 app.add_middleware(
@@ -60,4 +64,13 @@ async def log_requests(request: Request, call_next) -> Response:
     return response
 
 
+@app.middleware("http")
+async def counter_requests(request: Request, call_next: Callable) -> Response:
+    request.app.state.request_count += 1
+    current_number = request.app.state.request_count
+
+    response: Response = await call_next(request)
+
+    response.headers["X-Request-Number"] = str(current_number)
+    return response
 app.include_router(api_router)
