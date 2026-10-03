@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from dotenv import load_dotenv
 
 load_dotenv()
-"""Временное решение через dataclass, в реальной разработке использовать переменные окружения"""
+"""Временное решение через dataclass, в реальной 
+разработке использовать переменные окружения"""
 
 
 @dataclass(frozen=True)
