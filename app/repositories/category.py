@@ -1,3 +1,5 @@
+from collections.abc import Sequence
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -14,7 +16,7 @@ class CategoryRepository:
         """Получить запись task по id"""
         return self.db.get(CategoryORM, category_id)
 
-    def get_all(self) -> list[CategoryORM]:
+    def get_all(self) -> Sequence[CategoryORM]:
         """Получить все категории"""
         return self.db.scalars(select(CategoryORM)).all()
 

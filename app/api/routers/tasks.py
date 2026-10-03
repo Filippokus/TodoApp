@@ -22,9 +22,9 @@ def create_task(
 
 @router.patch("/{task_id}", response_model=TaskRead)
 def update_task(
-        task_id: str,
-        payload: TaskUpdate,
-        service: TaskService = Depends(get_task_service),
+    task_id: str,
+    payload: TaskUpdate,
+    service: TaskService = Depends(get_task_service),
 ) -> TaskRead:
     try:
         return service.update_task(task_id, payload)
