@@ -1,4 +1,4 @@
-﻿import logging
+import logging
 from time import perf_counter
 from typing import Callable
 
@@ -26,7 +26,7 @@ app = FastAPI(
 
 app.state.request_count = 0
 
-logger = logging.getLogger('app.middleware')
+logger = logging.getLogger("app.middleware")
 
 app.add_middleware(
     CORSMiddleware,
@@ -37,7 +37,9 @@ app.add_middleware(
 )
 
 
-@app.middleware("http")  # log_requests выполнится до и после обработки каждого хттп запроса
+@app.middleware(
+    "http"
+)  # log_requests выполнится до и после обработки каждого хттп запроса
 async def log_requests(request: Request, call_next) -> Response:
     started_at = perf_counter()
     try:

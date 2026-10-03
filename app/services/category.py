@@ -1,4 +1,4 @@
-﻿from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session
 
 from app.repositories.category import CategoryRepository
 from app.schemas.category import CategoryCreate, CategoryRead, CategoryUpdate
@@ -24,7 +24,9 @@ class CategoryService:
         self.db.commit()
         return CategoryRead.model_validate(category)
 
-    def update_category(self, category_id: str, payload: CategoryUpdate) -> CategoryRead:
+    def update_category(
+        self, category_id: str, payload: CategoryUpdate
+    ) -> CategoryRead:
 
         category = self.repository.get_by_id(category_id)
         if category is None:

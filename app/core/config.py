@@ -1,4 +1,4 @@
-﻿import os
+import os
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
@@ -17,7 +17,7 @@ def get_settings() -> Settings:
     return Settings(
         database_url=(
             f"postgresql+psycopg://"
-            f"{os.environ["DB_USER"]}:{os.environ["DB_PASSWORD"]}@{os.environ["DB_HOST"]}:{os.environ["DB_PORT"]}/{os.environ["DB_NAME"]}"
+            f"{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}@{os.environ['DB_HOST']}:{os.environ['DB_PORT']}/{os.environ['DB_NAME']}"
         ),
         cors_origins=os.environ["CORS_ORIGINS"].split(","),
     )

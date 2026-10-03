@@ -1,4 +1,4 @@
-﻿from sqlalchemy import select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.task import TaskORM
@@ -11,7 +11,7 @@ class TaskRepository:
         self.db = db
 
     def get_all(self) -> list[TaskORM]:
-        """ Получить все записи tasks"""
+        """Получить все записи tasks"""
         return self.db.scalars(select(TaskORM)).all()
 
     def get_by_id(self, task_id: str) -> TaskORM | None:
