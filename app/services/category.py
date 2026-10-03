@@ -3,8 +3,10 @@
 from app.repositories.category import CategoryRepository
 from app.schemas.category import CategoryCreate, CategoryRead, CategoryUpdate
 
+
 class CategoryNotFoundError(Exception):
     pass
+
 
 class CategoryService:
     """Ключевые операции с категориями, включая бизнес-лоигку, валидацию и прочее"""

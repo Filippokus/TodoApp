@@ -2,7 +2,6 @@
 from time import perf_counter
 from typing import Callable
 
-
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -73,4 +72,6 @@ async def counter_requests(request: Request, call_next: Callable) -> Response:
 
     response.headers["X-Request-Number"] = str(current_number)
     return response
+
+
 app.include_router(api_router)

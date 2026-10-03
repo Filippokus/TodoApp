@@ -1,11 +1,12 @@
 ﻿import os
-
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
 
 load_dotenv()
 """Временное решение через dataclass, в реальной разработке использовать переменные окружения"""
+
+
 @dataclass(frozen=True)
 class Settings:
     database_url: str
@@ -20,4 +21,3 @@ def get_settings() -> Settings:
         ),
         cors_origins=os.environ["CORS_ORIGINS"].split(","),
     )
-

@@ -6,9 +6,11 @@ from app.services.category import CategoryService, CategoryNotFoundError
 
 router = APIRouter(prefix="/categories", tags=["categories"])
 
+
 @router.get("", response_model=list[CategoryRead])
 def get_categories(service: CategoryService = Depends(get_category_service)) -> list[CategoryRead]:
     return service.list_categories()
+
 
 @router.post("", response_model=CategoryRead, status_code=status.HTTP_201_CREATED)
 def create_category(
@@ -16,6 +18,7 @@ def create_category(
         service: CategoryService = Depends(get_category_service),
 ) -> CategoryRead:
     return service.create_category(payload)
+
 
 @router.patch("/{category_id}", response_model=CategoryRead)
 def update_category(
@@ -30,6 +33,7 @@ def update_category(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Категория не найдена",
         )
+
 
 @router.delete("/{category_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_category(

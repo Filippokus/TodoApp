@@ -24,6 +24,6 @@ class TaskRepository:
         self.db.add(task)
         return task
 
-    def delete(self,task: TaskORM) -> None:
+    def delete(self, task: TaskORM) -> None:
         """Удалить запись task"""
         self.db.delete(task)
