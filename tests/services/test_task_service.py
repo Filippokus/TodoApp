@@ -8,7 +8,7 @@ from app.schemas.task import TaskCreate, TaskRead, TaskUpdate
 from app.services.task import TaskNotFoundError, TaskService
 
 
-def test_list_task_returns_pydantic_models(
+def test_list_tasks_returns_pydantic_models(
     task_service: TaskService,
     task_repository_mock: Mock,
 ) -> None:
