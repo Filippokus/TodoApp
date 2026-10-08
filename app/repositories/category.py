@@ -13,7 +13,7 @@ class CategoryRepository:
         self.db = db
 
     def get_by_id(self, category_id: str) -> CategoryORM | None:
-        """Получить запись task по id"""
+        """Получить запись category по id"""
         return self.db.get(CategoryORM, category_id)
 
     def get_all(self) -> Sequence[CategoryORM]:
